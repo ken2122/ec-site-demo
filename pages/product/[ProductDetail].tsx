@@ -1,14 +1,10 @@
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetServerSideProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { useCallback } from 'react';
 import styles from '../../src/assets/styles/style.module.css';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import HTMLReactParser from 'html-react-parser';
-import {
-    FirebaseTimestamp,
-    fetchDbProduct,
-    fetchProductsId,
-} from '../../src/firebase/index';
+import { FirebaseTimestamp, fetchDbProduct } from '../../src/firebase/index';
 import { ImageSwiper, SizeTable } from '../../src/components/products/index';
 import { addProductToCart } from '../../src/redux/users/operations';
 import { useDispatch } from 'react-redux';
@@ -18,33 +14,16 @@ interface Params extends ParsedUrlQuery {
     ProductDetail: string;
 }
 
-export const getStaticProps: GetStaticProps<PageProps, Params> = async ({
-    params,
-}) => {
-    const id = params.ProductDetail;
-    const product: Product = await fetchDbProduct(id);
-    return {
-        props: {
-            product,
-        },
-        revalidate: 1,
-    };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-    const id = await fetchProductsId();
-    const paths = id.map((pathName) => {
+export const getServerSideProps: GetServerSideProps<PageProps, Params> =
+    async ({ params }) => {
+        const id = params.ProductDetail;
+        const product: Product = await fetchDbProduct(id);
         return {
-            params: {
-                ProductDetail: pathName,
+            props: {
+                product,
             },
         };
-    });
-    return {
-        paths,
-        fallback: true,
     };
-};
 
 const useStyles = makeStyles((theme: Theme) => ({
     sliderBox: {

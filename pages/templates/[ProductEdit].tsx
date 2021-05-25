@@ -1,4 +1,4 @@
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetServerSideProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { useState, useCallback, useEffect } from 'react';
 import styles from '../../src/assets/styles/style.module.css';
@@ -10,65 +10,44 @@ import {
 import { useDispatch } from 'react-redux';
 import { saveProduct } from '../../src/redux/products/operations';
 import { ImageArea, SetSizesArea } from '../../src/components/products/index';
-import {
-    fetchDbProduct,
-    fetchDbCategories,
-    fetchProductsId,
-} from '../../src/firebase/index';
+import { fetchDbProduct, fetchDbCategories } from '../../src/firebase/index';
 import { PageProps, Product, List, Image, Size } from '../../types/index';
 
 interface Params extends ParsedUrlQuery {
     ProductEdit: string;
 }
 
-export const getStaticProps: GetStaticProps<PageProps, Params> = async ({
-    params,
-}) => {
-    let product: Product;
-    const id = params.ProductEdit;
+export const getServerSideProps: GetServerSideProps<PageProps, Params> =
+    async ({ params }) => {
+        let product: Product;
+        const id = params.ProductEdit;
 
-    if (id !== 'ProductEdit') {
-        product = await fetchDbProduct(id);
-    } else {
-        product = {
-            id: id,
-            category: '',
-            created_at: '',
-            description: '',
-            gender: '',
-            images: [],
-            name: '',
-            price: null,
-            sizes: [],
-            updated_at: '',
-        };
-    }
+        if (id !== 'ProductEdit') {
+            product = await fetchDbProduct(id);
+        } else {
+            product = {
+                id: id,
+                category: '',
+                created_at: '',
+                description: '',
+                gender: '',
+                images: [],
+                name: '',
+                price: null,
+                sizes: [],
+                updated_at: '',
+            };
+        }
 
-    const list: List[] = await fetchDbCategories();
-    return {
-        props: {
-            product,
-            list,
-        },
-        revalidate: 1,
-    };
-};
+        const list: List[] = await fetchDbCategories();
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    const id = await fetchProductsId();
-    id.push('ProductEdit');
-    const paths = id.map((pathName) => {
         return {
-            params: {
-                ProductEdit: pathName,
+            props: {
+                product,
+                list,
             },
         };
-    });
-    return {
-        paths,
-        fallback: true,
     };
-};
 
 const ProductEdit = ({ product, list }: PageProps): JSX.Element => {
     const dispatch = useDispatch();
