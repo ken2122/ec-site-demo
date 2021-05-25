@@ -5,7 +5,6 @@ import TableBody from '@material-ui/core/TableBody';
 import IconButton from '@material-ui/core/IconButton';
 import TableContainer from '@material-ui/core/TableContainer';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { makeStyles } from '@material-ui/styles';
 import { SizeTableProps } from '../../../types/index';
 
@@ -47,9 +46,9 @@ const SizeTable = (props: SizeTableProps): JSX.Element => {
                                     )}
                                 </TableCell>
                                 <TableCell className={classes.iconCell}>
-                                    <IconButton className={classes.iconCell}>
-                                        <FavoriteBorderIcon />
-                                    </IconButton>
+                                    <IconButton
+                                        className={classes.iconCell}
+                                    ></IconButton>
                                 </TableCell>
                             </TableRow>
                         ))}
