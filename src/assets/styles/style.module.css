@@ -1,0 +1,174 @@
+/*********** Module Spacer ***********/
+.moduleSpacerExtraExtraSmall {
+    height: 12px;
+}
+.moduleSpacerExtraSmall {
+    height: 12px;
+}
+.moduleSpacerSmall {
+    height: 20px;
+}
+.moduleSpacerMedium {
+    height: 32px;
+}
+
+/*********** Section ***********/
+.cMain {
+    padding: 96px 0;
+}
+.cSectionWrapin {
+    margin: 0 auto;
+    max-width: 575px;
+    position: relative;
+    padding: 0 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.cSectionContainer {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 1rem;
+    height: auto;
+    width: calc(100% - 2rem);
+}
+
+.cSectionLoading {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    opacity: 0.9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 9999;
+}
+
+.cSectionLoading > p {
+    color: #444;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pGridColumn {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+}
+
+.pGridRow {
+    display: flex;
+    flex-flow: row wrap;
+    text-rendering: geometricPrecision;
+}
+
+.pGridListImages {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.pGridListImages > .pMediaThumb {
+    margin: 0.5rem;
+    width: calc(50% - 1rem);
+}
+
+.pMediaThumb {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.pMediaThumb::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.pMediaThumb > img {
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+/*********** Footer ***********/
+.lFooter {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    margin: 0 1rem;
+}
+
+.lFooter > a {
+    color: #444;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+}
+
+.uTextSmall {
+    font-size: 0.9rem;
+}
+
+.uTextLinkNone {
+    text-decoration: none;
+}
+
+.uTextLeft {
+    text-align: left;
+}
+
+.uTextRight {
+    text-align: right;
+}
+
+.uTextCenter {
+    text-align: center;
+}
+
+.uTextHeadline {
+    color: #4dd0e1;
+    font-size: 1.563rem;
+    margin: 0 auto 1rem auto;
+}
+
+.uDisplayNone {
+    display: none;
+}
+
+@media screen and (min-width: 576px) {
+    /*********** Module Spacer ***********/
+    .moduleSpacerExtraExtraSmall {
+        height: 16px;
+    }
+    .moduleSpacerExtraSmall {
+        height: 20px;
+    }
+    .moduleSpacerSmall {
+        height: 32px;
+    }
+
+    /*********** Section ***********/
+    .cSectionWrapin {
+        max-width: 1024px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    /*********** Module Spacer ***********/
+    .moduleSpacerMedium {
+        height: 48px;
+    }
+}
