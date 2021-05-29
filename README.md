@@ -2,12 +2,12 @@
 
 ## URL
 
-https://second-d0x1qk4px-ken2122.vercel.app/
+https://ec-site-demo-mgdi1wzui-ken2122.vercel.app/
 
 ## テスト用アカウント
 
-メールアドレス：  
-パスワード：  
+メールアドレス：a@gmail.com  
+パスワード：testpass  
 ※デモアプリのため、アカウントの追加はお控えください。
 
 ## 使用技術
@@ -26,11 +26,11 @@ Firebase(Firestore,Storage)
 
 <img width="600" alt="ログイン画面" src="https://user-images.githubusercontent.com/78861708/119226435-0a4e3580-bb44-11eb-985c-7892f62c60eb.png">
 
-1. 最初にログイン画面が表示されるので、上記のパスワードを入力します。
+最初にログイン画面が表示されるので、上記のパスワードを入力します。
 
 ### 商品の購入
 
-![購入](https://user-images.githubusercontent.com/78861708/119249556-5e085f80-bbd4-11eb-9912-98497e91e4a1.gif)
+![購入](https://user-images.githubusercontent.com/78861708/119820281-43175180-bf2c-11eb-9643-0e40831c00ec.gif)
 
 1. トップページの商品をクリックし、商品の詳細ページに移動します。
 1. 希望するサイズの隣にあるカートアイコンをクリックし、ショッピングカートに商品を追加します。
@@ -43,12 +43,25 @@ Firebase(Firestore,Storage)
 
 ### 商品の登録
 
-![登録](https://user-images.githubusercontent.com/78861708/119252277-4a65f480-bbe6-11eb-90d1-0fa44c130af4.gif)
+![登録](https://user-images.githubusercontent.com/78861708/119820458-735ef000-bf2c-11eb-915b-46768ca9accd.gif)
+
+1. ヘッダーメニュー右端のメニューアイコンをクリックし、「商品登録」をクリックすると、登録画面に移動できます。
+1. 必要事項を入力し、「商品情報を登録」をクリックすると、商品情報が登録されます。
+1. トップメニューに先ほど登録した商品が追加されています。
 
 ### 商品の編集
 
-![編集](https://user-images.githubusercontent.com/78861708/119259819-01746700-bc0b-11eb-9c42-db95c67f5f48.gif)
+![編集](https://user-images.githubusercontent.com/78861708/119820659-af925080-bf2c-11eb-8a1c-ef4906a15905.gif)
 
-### getServerSideProps
+1. 商品右下のメニューアイコンをクリックし、「編集する」をクリックすると編集画面に移動できます。
+1. 編集したい箇所を編集し、「商品を登録」をクリックすると、商品情報が登録されます。  
+   ※変更内容を表示に反映するためには再度ページを読み込む必要があります。
 
-![serverside](https://user-images.githubusercontent.com/78861708/119260951-130c3d80-bc10-11eb-873c-4494c7e3cf32.gif)
+### ISR と SSR
+
+![getServerSideProps](https://user-images.githubusercontent.com/78861708/119820874-e9635700-bf2c-11eb-926d-c00a9024b660.gif)
+
+本アプリは Firestore からのデータの取得に Next.JS の ISR を使用しているため、商品の編集を行った際にはページを再度読み込む必要があります。  
+しかし、SSR を用いれば、ページ遷移の速度は遅くなりますが、ページの再読み込みをせずに変更内容を表示に反映させることができます。  
+SSR を用いたバージョンは[コチラ](https://ec-site-demo-bbyjr58ue-ken2122.vercel.app/)です。  
+ソースコードは"server-side"ブランチをご参照願います。
